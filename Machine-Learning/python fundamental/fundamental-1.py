@@ -138,3 +138,54 @@ square = {x: x ** 2 for x in range(5)} #menghasilkan dictionary  dengan kunci be
 #set comprehension
 square = {x %3 for x in range(10)} #menghasilkan sekumpulan set dari sisa bagi(modulo) 
 #output: 0,1,2
+
+
+## Buat function analyze_scores(scores) yang menerima list angka dan mengembalikan dictionary berisi:
+
+#count: jumlah nilai.
+#average: rata-rata.
+#maximum: nilai tertinggi.
+#unique_scores: kumpulan nilai unik.
+
+#Tangani juga kasus ketika list kosong.
+
+skor = {
+    "count": 0,
+    "average": 0,
+    "maximum": 0,
+    "unique_scores": 0
+}
+
+def analyze_score(numbers: list[int]) -> int:
+    if not numbers:
+        raise ValueError("Error")
+    
+    count = sum(numbers) 
+    average = sum(numbers) / len(numbers)
+    maximum = max(numbers)
+    unique_scores = set(numbers)
+    
+    return count, average, maximum, unique_scores #return tuple
+
+print(analyze_score([10, 20, 30]))
+    
+
+#revisi
+def analyze_scores(scores: list[int | float]) -> dict: #return dict
+    if not scores:
+        return {
+            "count": 0,
+            "average": 0,
+            "maximum": 0,
+            "unique_scores": set()
+        }
+    
+    return{
+        "count": len(scores),
+        "average": sum(scores)/len(scores),
+        "maximum": max(scores),
+        "unique_scores": set(scores) 
+    } #bentuk return dict
+    
+print(analyze_scores([10, 20, 30, 20]))
+print(analyze_scores([]))
